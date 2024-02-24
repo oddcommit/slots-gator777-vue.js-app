@@ -15,7 +15,7 @@
     "bonus":"PRIMA",
     "all":"Todo",
     "lucas":"LUCAS",
-    "pp":"PP",
+    "pp":"PRAGMATIC PLAY",
     "pg":"PG",
     "lobby":"VESTÍBULO",
     "first":"primero",
@@ -185,5 +185,7 @@
     "redblack": "Black Jack",
     "fivestar": "Five Star Stud",
     "texaspoke": "Texas Poker",
-    "flopmachine": "Show Hand"
+    "flopmachine": "Show Hand",
+    "hot": "HOT GAME",
+    "outro-bet": "OUTRO-BET"
 }
