@@ -25,12 +25,12 @@
                 <div class="recommendPage">
                     <swiper class="swiperMobile" :options="swiperOptionMoible" ref="mySwiper">
                         <swiper-slide v-for="(item, index) in bannerList" :key="index + 1">
-                            <img :src="item.img" @click="toBannerDetail(item.id)">
+                            <img :src="item">
                         </swiper-slide>
                     </swiper>
                     <swiper class="swiperPc" :options="swiperOptionPc" ref="mySwiper">
                         <swiper-slide v-for="(item, index) in bannerList" :key="index + 1">
-                            <img :src="item.img" @click="toBannerDetail(item.id)">
+                            <img :src="item">
                         </swiper-slide>
                     </swiper>
                 </div>
@@ -43,18 +43,26 @@
                                 <div class="list-game-bacarat">
                                     <div class="game-menu">
                                         <template v-for="(nav, index) in navmenu">
-                                            <div class="game-menu-item" :class="`${nav.type == selectedGameItem ? 'selected-game-menu-item' : ''}`" @click="changeGameItem(nav.type)">
-                                                <img class="menu-icon" v-if="nav.name == 'HOT GAME' || nav.name == 'PP'"
-                                                style="height: 22px" :src="require('../../assets/game/' + nav.name + '.png')" />
-                                                <img class="menu-icon" v-else :src="require('../../assets/game/' + nav.name + '.png')"/>
+                                            <div class="game-menu-item" :class="nav.type == selectedGameItem ? 'selected-game-menu-item' : ''" @click="changeGameItem(nav.type)">
+                                                <div v-if="nav.type == selectedGameItem">
+                                                    <img class="menu-icon" v-if="nav.name == 'HOT GAME' || nav.name == 'PP'"
+                                                    style="height: 22px" :src="require('../../assets/game/selected' + nav.name + '.png')" />
+                                                    <img class="menu-icon" v-else :src="require('../../assets/game/selected' + nav.name + '.png')"/>
+                                                </div>
+                                                <div v-else>
+                                                    <img class="menu-icon" v-if="nav.name == 'HOT GAME' || nav.name == 'PP'"
+                                                    style="height: 22px" :src="require('../../assets/game/' + nav.name + '.png')" />
+                                                    <img class="menu-icon" v-else :src="require('../../assets/game/' + nav.name + '.png')"/>
+                                                </div>
                                             </div>
                                         </template>
                                     </div>
                                     <template v-for="(game, index) in gameList">
                                         <div v-if="game.type == selectedGameItem" class="list-game-bacarat">
                                             <div class="game-menu-all">
-                                                <div class="right">
-                                                    <img src="../../assets/index/tudo.png" @click="showAllGame(game.type)" />
+                                                <img class="menu-icon" :src="require('../../assets/game/selected'+game.title+'.png')" />
+                                                <div class="right" @click="showAllGame(game.type)">
+                                                    {{ GLOBAL.lanLocal['all'] }}
                                                 </div>
                                             </div>
                                             <div class="game-item game-mobile" v-for="(item, i) in game.list" v-if="i < 6"
@@ -237,13 +245,10 @@ export default {
         }
     },
     mounted() {
-        let list = loadFile("static/activity.json", false);
-        if (list) {
-            list.forEach(item => {
-                let suffix = item.img.slice(-4)
-                item.img = item.img.replace(suffix, "_" + this.GLOBAL.lanCode + suffix)
-                this.bannerList.push(item)
-            });
+        const count = loadFile("static/banner/count", false);
+        for (let index = 1; index <= count; index++) {
+            let item = '../../../static/banner/' + index + "_" +this.GLOBAL.lanCode + '.png' 
+            this.bannerList.push(item)
         }
     },
     created() {
@@ -271,18 +276,6 @@ export default {
     methods: {
         changeGameItem(type) {
             this.selectedGameItem = type;
-            if(type == -1)
-            {
-                if(this.GLOBAL.userInfo.name && this.GLOBAL.userInfo.pwd)
-                {
-                    this.$emit("vip")
-                }else {
-                    this.toSignin()
-                }
-            }
-        },
-        toSignin() {
-            this.$emit("signin")
         },
         toBannerDetail(id) {
             this.$emit("detail", id)
@@ -368,7 +361,6 @@ export default {
                 { 'name': this.GLOBAL.lanLocal['pg'], 'img': require('../../assets/game/PG.png'), 'type': 4 },
                 { 'name': this.GLOBAL.lanLocal['pp'], 'img': require('../../assets/game/PRAGMATIC PLAY.png'), 'type': 3 },
                 { 'name': this.GLOBAL.lanLocal['outro-bet'], 'img': require('../../assets/game/OUTRO-BET.png'), 'type': 1 },
-                { 'name': this.GLOBAL.lanLocal['vip'], 'img': require('../../assets/game/VIP.png'), 'type': -1 },
             ]
         },
         setShareid() {
@@ -1259,16 +1251,21 @@ export default {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 6px 0px;
     margin-top: 10px;
     position: relative;
+
+    >img {
+        width: auto;
+        height: 25px;
+    }
 
     .right {
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        padding: 0.09rem 0.1rem 0.09rem 0.2rem;
+        padding: 5px 10px;
         z-index: 1;
         color: #94acd3;
         background: #161F2C;
@@ -1276,12 +1273,7 @@ export default {
         background-clip: padding-box,border-box;
         background-origin: padding-box,border-box;
         background-image: linear-gradient(266deg,#1F015D,#4705B2),linear-gradient(18deg,#DA33FF,transparent,transparent);
-
-        >img {
-            cursor: pointer;
-            height: 10px;
-            width: auto;
-        }
+        font-size: 14px;
     }
 }
 
@@ -1310,7 +1302,7 @@ export default {
     
     .menu-icon {
         width: auto;
-        height: 15px;
+        height: 25px;
     }
 
     >span {
