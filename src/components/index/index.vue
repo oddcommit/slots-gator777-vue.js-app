@@ -82,7 +82,7 @@
             @close="closeModal" :accountid="GLOBAL.userInfo.accountid" :amount="amount" :lanData="lanData"
             :tabIndex="tabIndex"></NavHeader>
         <HomePage v-if="tabIndex == 1" @toGame="toGame" @toLogin="toLogin(false)" @recharge="showPage(6)"
-            @saveDesktop="saveDesktop" @vip="showPage(11)" @toForgot="showPage(7)" @detail="activityDetail"></HomePage>
+            @saveDesktop="saveDesktop" @vip="showPage(11)" @toForgot="showPage(7)" @detail="activityDetail" @signin="toLogin(false)"></HomePage>
         <ActivityPage v-if="tabIndex == 2" @detail="activityDetail"></ActivityPage>
         <ActivityDetailPage v-if="tabIndex == 21" :id="id" @close="closeModal"></ActivityDetailPage>
         <EmailPage v-if="tabIndex == 3" @detail="emailDetail"></EmailPage>

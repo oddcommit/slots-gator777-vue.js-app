@@ -281,6 +281,9 @@ export default {
                 }
             }
         },
+        toSignin() {
+            this.$emit("signin")
+        },
         toBannerDetail(id) {
             this.$emit("detail", id)
         },
