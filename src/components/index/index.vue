@@ -15,33 +15,9 @@
                     </div>
                 </div>
                 <div class="menu-list">
-                    <div class="menu-item" :class="tabIndex == 1 ? 'active' : ''" @click="showPage(1)">
-                        <img class="icon" :src="require('../../assets/slider/home.png')" />
-                        <div class="bd">{{ GLOBAL.lanLocal['lobby'] }}</div>
-                    </div>
-                    <div class="menu-item" :class="tabIndex == 2 ? 'active' : ''" @click="showPage(2)">
-                        <img class="icon" :src="require('../../assets/slider/activity.png')" />
-                        <div class="bd">{{ GLOBAL.lanLocal['activity'] }}</div>
-                    </div>
-                    <div class="menu-item" :class="tabIndex == 10 ? 'active' : ''" @click="showPage(10)">
-                        <img class="icon" :src="require('../../assets/slider/bonus.png')" />
-                        <div class="bd">{{ GLOBAL.lanLocal['bonus'] }}</div>
-                    </div>
-                    <div class="menu-item" :class="tabIndex == 6 ? 'active' : ''" @click="showPage(6)">
-                        <img class="icon" :src="require('../../assets/slider/recharge.png')" />
-                        <div class="bd">{{ GLOBAL.lanLocal['recharge'] }}</div>
-                    </div>
-                    <div class="menu-item" :class="tabIndex == 4 ? 'active' : ''" @click="showPage(4)">
-                        <img class="icon" :src="require('../../assets/slider/me.png')" />
-                        <div class="bd">{{ GLOBAL.lanLocal['me'] }}</div>
-                    </div>
                     <div class="menu-item" :class="tabIndex == 11 ? 'active' : ''" @click="showPage(11)">
                         <img class="icon" :src="require('../../assets/slider/vip.png')" />
                         <div class="bd">{{ GLOBAL.lanLocal['vip'] }}</div>
-                    </div>
-                    <div class="menu-item menu-save" @click="saveDesktop">
-                        <img class="icon" :src="require('../../assets/slider/save.png')" />
-                        <div class="bd">{{ GLOBAL.lanLocal['savetodesktop'] }}</div>
                     </div>
                     <div class="menu-item" @click="showPage(3)">
                         <img class="icon" :src="require('../../assets/slider/email.png')" />
@@ -55,6 +31,10 @@
                         <img class="icon" v-if="customerType == 5" :src="require('../../assets/slider/telegram.png')" />
                         <div class="bd">{{ GLOBAL.lanLocal['contact'] }}</div>
                     </a>
+                    <div class="menu-item menu-save" @click="saveDesktop">
+                        <img class="icon" :src="require('../../assets/slider/save.png')" />
+                        <div class="bd">{{ GLOBAL.lanLocal['savetodesktop'] }}</div>
+                    </div>
                     <div class="menu-item" @click="changeLan">
                         <template v-for="(item, index) in lanData">
                             <img v-if="lanCode == item.code" class="icon" :src="item.img" />
@@ -823,7 +803,8 @@ export default {
             left: 0;
             top: 52px;
             width: 100%;
-            background-color: rgb(112, 20, 33);
+            background: #641BE9;
+            box-shadow: inset 0 -2px 6px #2a0080, inset 0 1px 2px #9a62ff;
             border-radius: 6px;
 
             .lan-item {
@@ -844,7 +825,7 @@ export default {
                 }
 
                 div {
-                    color: rgb(144, 151, 161);
+                    color: white;
                     font-size: 16px;
                 }
             }

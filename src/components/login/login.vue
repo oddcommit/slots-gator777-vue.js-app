@@ -13,7 +13,7 @@
                 <div class="page-logo">
                     <img class="logo" :src="require('../../assets/login/logo.png')" />
                     <div>
-                        <p style="font-size: 16px;">Slots Gator 777</p>
+                        <p style="font-size: 16px;">CurBetBet</p>
                         <p style="color: #94acd3;">Cassino Responsável</p>
                     </div>
                 </div>

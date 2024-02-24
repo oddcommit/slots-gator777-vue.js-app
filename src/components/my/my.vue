@@ -4,7 +4,7 @@
         <div class="content">
             <div>
                 <div style="padding: 0 4px;">
-                    <!-- <div class="info-box">
+                    <div class="info-box">
                         <img class="avatar" src="../../assets/me/default.png" />
                         <div class="user-info">
                             <div class="nickname"><span>{{ GLOBAL.userInfo.name }}</span></div>
@@ -16,7 +16,7 @@
                                 <div class="vip-num">{{ vip }}</div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="data">
                         <div class="user-info">
                             <img class="avatar" src="../../assets/me/default.png" />

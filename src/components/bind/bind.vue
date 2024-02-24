@@ -4,7 +4,7 @@
         <div class="page-title">
             {{ GLOBAL.lanLocal['bindcard'] }}
             <a class="close" @click="close">
-                <img class="icon" @click="close" :src="require('../../assets/amount/close.png')" />
+                <img class="icon" @click="close" :src="require('../../assets/active-close.png')" />
             </a>
         </div>
         <div class="content">
