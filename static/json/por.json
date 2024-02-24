@@ -83,7 +83,7 @@
     "bonus":"BÔNUS",
     "all":"TUDO",
     "lucas":"CLASSICO",
-    "pp":"PP",
+    "pp":"PRAGMATIC PLAY",
     "pg":"PG",
     "lobby":"SALÃO",
     "first":"primeiro",
@@ -235,5 +235,7 @@
     "pokdeng": "POKDENG",
     "fish": "PESCARIA",
     "bitcoin": "GRAG",
-    "favorite": "COLETAR"
+    "favorite": "COLETAR",
+    "hot": "HOT GAME",
+    "outro-bet": "OUTRO-BET"
 }

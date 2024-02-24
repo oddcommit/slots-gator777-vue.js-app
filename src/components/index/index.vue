@@ -3,7 +3,7 @@
         <div :style="{ display: isShowSlider ? 'block' : 'none' }" class="slider-menu-masking" @click="changeSlider">
             <div class="slider-menu" @click.stop="func1()">
                 <div style="display: flex; justify-content: space-between;">
-                    <div class="user-info" :class="GLOBAL.userInfo.accountid > 0 ? '' : 'user-info-hidden'">
+                    <div class="user-info" :class="GLOBAL.userInfo.accountid != 0 ? '' : 'user-info-hidden'">
                         <img class="avatar" src="../../assets/me/default.png" />
                         <div class="info-value">
                             <div class="nickname"><span>{{ GLOBAL.userInfo.nickname }}</span></div>
@@ -716,6 +716,7 @@ export default {
 
     .user-info-hidden {
         display: none;
+        visibility: hidden;
     }
 
     .user-info {
@@ -868,12 +869,19 @@ export default {
     }
 
     .topage {
-        background: rgb(233, 116, 20);
+        background: #641BE9;
+        box-shadow: inset 0 -2px 6px #2a0080, inset 0 1px 2px #9a62ff;
         color: #fff;
-        width: 115px;
+        width: 130px;
+        height: 30px;
         margin: 15px auto;
         border-radius: 20px;
+        border: 3px solid white;
         cursor: pointer;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .close {

@@ -83,7 +83,7 @@
     "bonus":"BONUS",
     "all":"ALL",
     "lucas":"CLASSICO",
-    "pp":"PP",
+    "pp":"PRAGMATIC PLAY",
     "pg":"PG",
     "lobby":"LOBBY",
     "first":"first",
@@ -254,5 +254,7 @@
     "redblack": "Black Jack",
     "fivestar": "Five Star Stud",
     "texaspoke": "Texas Poker",
-    "flopmachine": "Show Hand"
+    "flopmachine": "Show Hand",
+    "hot": "HOT GAME",
+    "outro-bet": "OUTRO-BET"
 }

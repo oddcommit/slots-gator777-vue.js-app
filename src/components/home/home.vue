@@ -42,11 +42,11 @@
                             <div class="container-list-game-slot">
                                 <div class="list-game-bacarat">
                                     <div class="game-menu">
-                                        <template v-for="(game, index) in gameList">
-                                            <div class="game-menu-item" :class="`${game.type == selectedGameItem ? 'selected-game-menu-item' : ''}`" @click="changeGameItem(game.type)">
-                                                <img class="menu-icon" v-if="game.title == 'HOT GAME' || game.title == 'PP'"
-                                                style="height: 22px" :src="require('../../assets/game/' + game.title + '.png')" />
-                                                <img class="menu-icon" v-else :src="require('../../assets/game/' + game.title + '.png')" />
+                                        <template v-for="(nav, index) in navmenu">
+                                            <div class="game-menu-item" :class="`${nav.type == selectedGameItem ? 'selected-game-menu-item' : ''}`" @click="changeGameItem(nav.type)">
+                                                <img class="menu-icon" v-if="nav.name == 'HOT GAME' || nav.name == 'PP'"
+                                                style="height: 22px" :src="require('../../assets/game/' + nav.name + '.png')" />
+                                                <img class="menu-icon" v-else :src="require('../../assets/game/' + nav.name + '.png')"/>
                                             </div>
                                         </template>
                                     </div>
@@ -59,17 +59,17 @@
                                             </div>
                                             <div class="game-item game-mobile" v-for="(item, i) in game.list" v-if="i < 6"
                                                 @click="toGame(item.gameid, item.type, item.roomid, item.open, item)">
-                                                <img class="game-img" v-if="game.type == 3"
-                                                    :src="'https://lucas999.prerelease-env.biz/game_pic/square/200/' + item.gameid + '.png'" />
-                                                <img class="game-img" v-else
-                                                    :src="require('../../assets/game/' + item.roomid + '_' + GLOBAL.lanCode + '.png')" />
+                                                <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.png')" />
+                                                <img class="game-img" v-else-if="selectedGameItem == 3" :src="require('../../assets/game/pp/'+item.gameid+'.png')" />
+                                                <img class="game-img" v-else-if="selectedGameItem == 1" :src="require('../../assets/game/outrobet/'+item.roomid+'_'+GLOBAL.lanCode+'.png')" />
+                                                <img class="game-img" v-else :src="require('../../assets/game/hot/'+item.roomid+'.png')" />
                                             </div>
                                             <div class="game-item game-pc" v-for="(item, i) in game.list" v-if="i < 12"
                                                 @click="toGame(item.gameid, item.type, item.roomid, item.open, item)">
-                                                <img class="game-img" v-if="game.type == 3"
-                                                    :src="'https://lucas999.prerelease-env.biz/game_pic/square/200/' + item.gameid + '.png'" />
-                                                <img class="game-img" v-else
-                                                    :src="require('../../assets/game/' + item.roomid + '_' + GLOBAL.lanCode + '.png')" />
+                                                <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.png')" />
+                                                <img class="game-img" v-else-if="selectedGameItem == 3" :src="require('../../assets/game/pp/'+item.gameid+'.png')" />
+                                                <img class="game-img" v-else-if="selectedGameItem == 1" :src="require('../../assets/game/outrobet/'+item.roomid+'_'+GLOBAL.lanCode+'.png')" />
+                                                <img class="game-img" v-else :src="require('../../assets/game/hot/'+item.roomid+'.png')" />
                                             </div>
                                         </div>
                                     </template>
@@ -96,19 +96,6 @@
                 <img @click="showAllGame(-1)" :src="require('../../assets/index/menu-back.png')" />
             </div>
             <div class="header-cover"></div>
-            <div class="header-menu">
-                <div class="menu-content">
-                    <div class="menu-close">
-                        <img @click="showAllGame(-1)" :src="require('../../assets/index/menu-back.png')" />
-                    </div>
-                    <div class="menu-item" @click="showAllGame(game.type)" v-for="(game, index) in gameList">
-                        <span :class="game.type == gameType ? 'active' : ''">
-                            {{ game.title }}
-                        </span>
-                        <img v-if="game.type == gameType" :src="require('../../assets/index/menu-selected.png')" />
-                    </div>
-                </div>
-            </div>
             <div class="wrap-container">
                 <div class="item-content">
                     <div class="view-game-container">
@@ -118,10 +105,10 @@
                                     <template v-for="(item, i) in allGame.list">
                                         <div class="game-item no-animate"
                                             @click="toGame(item.gameid, item.type, item.roomid, item.open, item)">
-                                            <img class="game-img" v-if="allGame.type == 3"
-                                                :src="'https://lucas999.prerelease-env.biz/game_pic/square/200/' + item.gameid + '.png'" />
-                                            <img class="game-img" v-else
-                                                :src="sourceUrl + item.roomid + '_' + GLOBAL.lanCode + '.png'" />
+                                            <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.png')" />
+                                            <img class="game-img" v-else-if="selectedGameItem == 3" :src="require('../../assets/game/pp/'+item.gameid+'.png')" />
+                                            <img class="game-img" v-else-if="selectedGameItem == 1" :src="require('../../assets/game/outrobet/'+item.roomid+'_'+GLOBAL.lanCode+'.png')" />
+                                            <img class="game-img" v-else :src="require('../../assets/game/hot/'+item.roomid+'.png')" />
                                         </div>
                                     </template>
                                 </div>
@@ -284,6 +271,15 @@ export default {
     methods: {
         changeGameItem(type) {
             this.selectedGameItem = type;
+            if(type == -1)
+            {
+                if(this.GLOBAL.userInfo.name && this.GLOBAL.userInfo.pwd)
+                {
+                    this.$emit("vip")
+                }else {
+                    this.toSignin()
+                }
+            }
         },
         toBannerDetail(id) {
             this.$emit("detail", id)
@@ -364,13 +360,13 @@ export default {
             localStorage.removeItem(md5('__pwd_'))
         },
         setData() {
-            // this.navmenu = [
-            //     { 'name': this.GLOBAL.lanLocal['lobby'], 'img': require('../../assets/index/main-selected.png'), 'type': 999 },
-            //     { 'name': this.GLOBAL.lanLocal['pg'], 'img': require('../../assets/index/pg-normal.png'), 'type': 2 },
-            //     { 'name': this.GLOBAL.lanLocal['lucas'], 'img': require('../../assets/index/lucas-normal.png'), 'type': 1 },
-            //     { 'name': this.GLOBAL.lanLocal['pp'], 'img': require('../../assets/index/pp-normal.png'), 'type': 3 },
-            //     { 'name': this.GLOBAL.lanLocal['vip'], 'img': require('../../assets/index/vip-normal.png'), 'type': -1 },
-            // ]
+            this.navmenu = [
+                { 'name': this.GLOBAL.lanLocal['hot'], 'img': require('../../assets/game/HOT GAME.png'), 'type': 0 },
+                { 'name': this.GLOBAL.lanLocal['pg'], 'img': require('../../assets/game/PG.png'), 'type': 4 },
+                { 'name': this.GLOBAL.lanLocal['pp'], 'img': require('../../assets/game/PRAGMATIC PLAY.png'), 'type': 3 },
+                { 'name': this.GLOBAL.lanLocal['outro-bet'], 'img': require('../../assets/game/OUTRO-BET.png'), 'type': 1 },
+                { 'name': this.GLOBAL.lanLocal['vip'], 'img': require('../../assets/game/VIP.png'), 'type': -1 },
+            ]
         },
         setShareid() {
             var url = window.location.href
@@ -1684,6 +1680,7 @@ export default {
 .game-cover {
     overflow-y: scroll;
     background-image: none;
+    padding: 30px 0px 100px;
 
     .game-close {
         cursor: pointer;
@@ -1707,7 +1704,7 @@ export default {
         box-sizing: border-box;
 
         >img {
-            height: 38px;
+            height: 45px;
             width: auto;
         }
     }
