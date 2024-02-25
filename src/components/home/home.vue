@@ -67,6 +67,9 @@
                                             </div>
                                             <div class="game-item game-mobile" v-for="(item, i) in game.list" v-if="i < 6"
                                                 @click="toGame(item.gameid, item.type, item.roomid, item.open, item)">
+                                                <div class="game-play">
+                                                    <img :src="require('../../assets/play.png')" />
+                                                </div>
                                                 <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.png')" />
                                                 <img class="game-img" v-else-if="selectedGameItem == 3" :src="require('../../assets/game/pp/'+item.gameid+'.png')" />
                                                 <img class="game-img" v-else-if="selectedGameItem == 1" :src="require('../../assets/game/outrobet/'+item.roomid+'_'+GLOBAL.lanCode+'.png')" />
@@ -74,6 +77,9 @@
                                             </div>
                                             <div class="game-item game-pc" v-for="(item, i) in game.list" v-if="i < 12"
                                                 @click="toGame(item.gameid, item.type, item.roomid, item.open, item)">
+                                                <div class="game-play">
+                                                    <img :src="require('../../assets/play.png')" />
+                                                </div>
                                                 <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.png')" />
                                                 <img class="game-img" v-else-if="selectedGameItem == 3" :src="require('../../assets/game/pp/'+item.gameid+'.png')" />
                                                 <img class="game-img" v-else-if="selectedGameItem == 1" :src="require('../../assets/game/outrobet/'+item.roomid+'_'+GLOBAL.lanCode+'.png')" />
@@ -113,6 +119,9 @@
                                     <template v-for="(item, i) in allGame.list">
                                         <div class="game-item no-animate"
                                             @click="toGame(item.gameid, item.type, item.roomid, item.open, item)">
+                                            <div class="game-play">
+                                                <img :src="require('../../assets/play.png')" />
+                                            </div>
                                             <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.png')" />
                                             <img class="game-img" v-else-if="selectedGameItem == 3" :src="require('../../assets/game/pp/'+item.gameid+'.png')" />
                                             <img class="game-img" v-else-if="selectedGameItem == 1" :src="require('../../assets/game/outrobet/'+item.roomid+'_'+GLOBAL.lanCode+'.png')" />
@@ -1325,6 +1334,21 @@ export default {
     position: relative;
     box-sizing: border-box;
 
+    .game-play {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(13,19,28,.4);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 2;
+        transition: opacity .1s ease-in-out;
+    }
+
     .v-btn {
         border: none;
         align-items: center;
@@ -1398,6 +1422,11 @@ export default {
         top: 0;
         transition: opacity .2s cubic-bezier(.4, 0, .6, 1);
     }
+}
+
+.game-item:hover .game-play {
+    opacity: 1;
+    border-radius: 10px;
 }
 
 .game-item:hover {
