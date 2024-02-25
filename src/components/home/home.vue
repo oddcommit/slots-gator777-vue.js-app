@@ -70,20 +70,20 @@
                                                 <div class="game-play">
                                                     <img :src="require('../../assets/play.png')" />
                                                 </div>
-                                                <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.png')" />
+                                                <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.jpg')" />
                                                 <img class="game-img" v-else-if="selectedGameItem == 3" :src="require('../../assets/game/pp/'+item.gameid+'.png')" />
                                                 <img class="game-img" v-else-if="selectedGameItem == 1" :src="require('../../assets/game/outrobet/'+item.roomid+'_'+GLOBAL.lanCode+'.png')" />
-                                                <img class="game-img" v-else :src="require('../../assets/game/hot/'+item.roomid+'.png')" />
+                                                <img class="game-img" v-else :src="require('../../assets/game/hot/'+item.roomid+'.jpg')" />
                                             </div>
                                             <div class="game-item game-pc" v-for="(item, i) in game.list" v-if="i < 12"
                                                 @click="toGame(item.gameid, item.type, item.roomid, item.open, item)">
                                                 <div class="game-play">
                                                     <img :src="require('../../assets/play.png')" />
                                                 </div>
-                                                <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.png')" />
+                                                <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.jpg')" />
                                                 <img class="game-img" v-else-if="selectedGameItem == 3" :src="require('../../assets/game/pp/'+item.gameid+'.png')" />
                                                 <img class="game-img" v-else-if="selectedGameItem == 1" :src="require('../../assets/game/outrobet/'+item.roomid+'_'+GLOBAL.lanCode+'.png')" />
-                                                <img class="game-img" v-else :src="require('../../assets/game/hot/'+item.roomid+'.png')" />
+                                                <img class="game-img" v-else :src="require('../../assets/game/hot/'+item.roomid+'.jpg')" />
                                             </div>
                                         </div>
                                     </template>
@@ -122,10 +122,10 @@
                                             <div class="game-play">
                                                 <img :src="require('../../assets/play.png')" />
                                             </div>
-                                            <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.png')" />
+                                            <img class="game-img" v-if="selectedGameItem == 4" :src="require('../../assets/game/pg/'+item.roomid+'.jpg')" />
                                             <img class="game-img" v-else-if="selectedGameItem == 3" :src="require('../../assets/game/pp/'+item.gameid+'.png')" />
                                             <img class="game-img" v-else-if="selectedGameItem == 1" :src="require('../../assets/game/outrobet/'+item.roomid+'_'+GLOBAL.lanCode+'.png')" />
-                                            <img class="game-img" v-else :src="require('../../assets/game/hot/'+item.roomid+'.png')" />
+                                            <img class="game-img" v-else :src="require('../../assets/game/hot/'+item.roomid+'.jpg')" />
                                         </div>
                                     </template>
                                 </div>
@@ -1333,6 +1333,7 @@ export default {
     padding: 4px;
     position: relative;
     box-sizing: border-box;
+    position: relative;
 
     .game-play {
         position: absolute;
