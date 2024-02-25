@@ -1303,6 +1303,12 @@ export default {
         align-items: center;
         width: 210px;
         height: 30px;
+
+        >div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
     .selected-game-menu-item {
         background: url('../../assets/index/game-menu-back.png');
@@ -1328,12 +1334,14 @@ export default {
 
 .game-item {
     cursor: pointer;
-    width: 33.33%;
+    width: 30%;
     height: auto;
-    padding: 4px;
     position: relative;
     box-sizing: border-box;
     position: relative;
+    overflow: hidden;
+    margin: 5px;
+    border-radius: 10px;
 
     .game-play {
         position: absolute;
@@ -1348,6 +1356,14 @@ export default {
         opacity: 0;
         z-index: 2;
         transition: opacity .1s ease-in-out;
+    }
+
+    .game-img {
+        width: 108%;
+        height: 108%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        margin: -8%;
     }
 
     .v-btn {
@@ -1464,15 +1480,6 @@ export default {
 
 .faving-img {
     filter: unset !important;
-}
-
-.game-img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    -o-object-fit: fill;
-    object-fit: fill;
-    // filter: drop-shadow(3px 3px 3px #000);
 }
 
 .game-name {
