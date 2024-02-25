@@ -132,8 +132,8 @@ export default {
 
     .menu-icon {
         cursor: pointer;
-        height: 32px;
-        width: 40px;
+        width: 27px;
+        height: 21px;
         margin-right: 8px;
     }
 
@@ -154,11 +154,6 @@ export default {
     @media only screen and (max-width: 450px) {
         .main-icon {
             display: none;
-        }
-
-        .menu-icon {
-            width: 27px;
-            height: 21px;
         }
 
         .menu-mobile {
